@@ -19,7 +19,7 @@ const replaceVal = (tempVal , orgVal) => {
 
  const server = http.createServer((req, res) =>{
     if(req.url == '/'){
-        requests('http://localhost:3000/data')
+        requests('http://localhost:3001/data')
         .on('data',  (chunk) => {
           //console.log(chunk);
             const objData = JSON.parse(chunk);
