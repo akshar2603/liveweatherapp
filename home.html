@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body{
+            margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    
+}
+.box{
+    width: 330px;
+    height: 300px;
+    background-color: rgb(165, 226, 245);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 30px;
+  
+}
+
+#weathericon{
+    width : 50%vh;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+   
+}
+.info{
+    /* display: flex; */
+    /* flex-direction: column; Change the main axis to vertical */
+    /* justify-content: space-between; */
+    padding : 50px ;
+
+}
+#menicon{
+    position: relative;
+    animation-name:example ;
+    /* background-color: #eccc68; */
+    animation-timing-function: repeat;
+    animation-duration: 3s;
+    animation-iteration-count:infinite;
+}
+@keyframes example {
+    0% {transform: scaleX(0);}
+    50% { transform: scaleX(-1); }
+    100% { transform: scaleX(0);} 
+}
+
+    </style>
+    <title>WeatherApp</title>
+</head>
+<body>
+    <div class = "box">
+        <div class  = 'wave-one'></div>
+        <div class  = 'wave-two'></div>
+        <div class  = 'wave-three'></div>
+        <div id = 'weathericon'>
+            <i class ="fas fa-sun fa-10x" style="color: #eccc68; font-size: 48px;"></i>
+        </div>
+
+        <div class = "info">
+            <h2 class="location"><i class="fas fa-street-view" id = "menicon" style="color: #fff;"></i> {%location%}, {%country%}</h2>
+            <p id="date">WED | OCT 23 | 10:49AM</p>
+            <h1 class="temp">{%temp%}.C</h1>
+            <h3 class="tempminmax">Min {%mintemp%}.C | Max {%maxtemp%}.C</h3>
+        </div>
+    </div>
+
+    <script>
+        const curDate =  document.getElementById("date") ;
+        let weathercon = document.getElementById("weathericon") ;
+        const tempStatus = "clouds" ;
+
+        const getCurrentDay = () =>{
+            const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            var currentTime = new Date() ;
+            day = weekday[currentTime.getDay()] ;
+            return day ; 
+        };
+        const getCurrentTime = () =>{
+            const monthName = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            var currentTime = new Date() ;
+            var  month = monthName[currentTime.getMonth()] ;
+            var day  = currentTime.getDate() ;
+           
+            var hour = currentTime.getHours() ;
+            var min  = currentTime.getMinutes() ;
+            var mod =  "AM" ;
+            if(hour > 11){
+                mod = "PM" ;
+            }
+            if(min < 10){
+                min  = "0" + min ;
+            }
+
+            return  `${month} ${day} | ${hour}:${min}${mod}` ;
+        };
+        
+        curDate.innerHTML = getCurrentDay() + " | " + getCurrentTime() ;
+    </script>
+</body>
+</html>
+
+
+<!-- in this project we learn to way fopr writing and fetching and believe me placeholder concept is crazy with thta we ahve set mihn temp like other think with outer file  -->
